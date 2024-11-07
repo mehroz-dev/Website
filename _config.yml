@@ -1,0 +1,127 @@
+# Site settings
+title: Flutter
+# description: TBC
+email: flutter-dev@googlegroups.com
+url: https://flutter.io
+port: 4002
+github_username: flutter
+repo:
+  organization: https://github.com/flutter
+  this: https://github.com/flutter/website
+  flutter: https://github.com/flutter/flutter
+branch: master
+
+dart:
+  api: https://api.dartlang.org
+  sdk:
+    channel: stable
+sdk: # Flutter SDK
+  channel: stable # When changing this value also update it in src/_assets/js/archive.js
+
+social:
+  twitter: https://twitter.com/flutterio
+  youtube: https://www.youtube.com/playlist?list=PLOU2XLYxmsIJ7dsVN4iRuA7BT8XHzGtCr
+
+dart-site: https://www.dartlang.org
+news: https://news.dartlang.org
+api: https://docs.flutter.io
+pub: https://pub.dartlang.org
+pub-api: https://pub.dartlang.org/documentation
+pub-pkg: https://pub.dartlang.org/packages
+flutter-medium: https://medium.com/flutter-io
+medium: https://medium.com
+dartpad: https://dartpad.dartlang.org
+material: https://material.io
+so: https://stackoverflow.com
+github: https://github.com
+android-dev: https://developer.android.com
+codelabs: https://codelabs.developers.google.com
+groups: https://groups.google.com
+firebase: https://firebase.google.com
+
+defaults:
+- scope:
+    path: ''
+  values:
+    layout: default
+    show-nav-get-started-button: true
+    # To hide banners from every page, comment out the `show_banner` setting
+    # below. To selectively enable a banner (say, on the homepage) add
+    # `show_banner: true` to the page's frontmatter.
+    show_banner: true
+- scope:
+    path: 'docs'
+  values:
+    toc: true
+- scope:
+    path: 'docs/cookbook'
+  values:
+    show_breadcrumbs: true
+- scope:
+    path: 'docs/development'
+  values:
+    show_breadcrumbs: true
+- scope:
+    path: 'docs/development/ui/widgets'
+  values:
+    toc: false
+- scope:
+    path: 'docs/get-started'
+  values:
+    show_breadcrumbs: true
+- scope:
+    path: 'docs/get-started/flutter-for'
+  values:
+    show_breadcrumbs: false
+
+# Build settings
+
+assets:
+  sources:
+    - _shared/_assets
+    - _shared/_assets/css
+
+# kramdown: {show_warnings: true}
+plugins: [jekyll-toc]
+source: src
+# `symlinked-sources` can refer to individual files or directories
+# under `src` that are symlinked to somewhere outside `src`, or it can
+# refer to the root folder of the symlinked content (like `site-shared/src`):
+symlinked-sources: [site-shared/src]
+toc:
+  min_level: 2
+  max_level: 4
+
+## Site-wide shorthands
+
+os-list: [Windows, macOS, Linux]
+
+alert:
+  important: >-
+    <aside class="alert alert-warning" role="alert" markdown="1">
+    <i class="fas fa-exclamation-circle"></i> **Important:**
+  info: >-
+    <aside class="alert alert-info" role="alert" markdown="1">
+    <i class="fas fa-info-circle"></i>
+  note: >-
+    <aside class="alert alert-info" role="alert" markdown="1">
+    <i class="fas fa-info-circle"></i> **Note:**
+  secondary: >-
+    <aside class="alert alert-secondary" role="alert" markdown="1">
+  tip: >-
+    <aside class="alert alert-success" role="alert" markdown="1">
+    <i class="far fa-lightbulb"></i> **Tip:**
+  warning: >-
+    <aside class="alert alert-warning" role="alert" markdown="1">
+    <i class="fas fa-exclamation-triangle"></i> **Warning:**
+  end: </aside>
+
+  # callout_danger: '<div class="bs-callout bs-callout-danger">'
+  # callout_default: '<div class="bs-callout bs-callout-default">'
+  # callout_primary: '<div class="bs-callout bs-callout-primary">'
+  # callout_success: '<div class="bs-callout bs-callout-success">'
+  # callout_info: '<div class="bs-callout bs-callout-info">'
+  # callout_warning: '<div class="bs-callout bs-callout-warning">'
+
+  # hr_faded: '<hr class="faded"/>'
+  # hr_shaded: '<hr class="shaded"/>'
