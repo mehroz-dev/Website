@@ -1,0 +1,119 @@
+---
+title: Showcase
+layout: landing
+body_class: landing-page showcase
+---
+
+<section id="showcaseCarousel" class="landing-page__hero showcase__carousel carousel slide" data-interval=8000 data-ride="carousel" data-pause="false">
+    <ol class="carousel-indicators">
+        {% for case in site.data.showcases %}
+            {% if case.featured %}
+                {% capture loopCount %}{% increment showcaseCounter %}{% endcapture %}
+                <li data-target="#showcaseCarousel" data-slide-to="{{ loopCount }}" {% if loopCount == '0' %}class="active"{% endif %}></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for case in site.data.showcases %}
+            {% if case.featured %}
+            <div class="showcase__carousel__slide carousel-item {% if forloop.first == true %}active{% endif %}">
+                <div class="showcase__carousel__slide__background" style="background-image: url('{% asset '{{ case.hero_src }}' @path %}') "></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-5 col-lg-5 offset-lg-6 col-xl-4 offset-xl-7">
+                            <div class="card card--app">
+                                <div class="card-body">
+                                    <h2 class="card-category">Featured</h2>
+                                    <h3>{{ case.name }}</h3>
+                                    <p>{{ case.description }}</p>
+                                </div>
+                                <div class="card-footer card-footer--transparent card-footer--links">
+                                    {% if case.learn_more_link %}<a class="btn btn-link" href="{{ case.learn_more_link }}">{{ case.learn_more_cta }}</a>{% endif %}
+                                    {% if case.video_id %}<button class="btn btn-link btn-icon d-inline-flex" type="button" data-video="{{ case.video_id }}" data-toggle="modal" data-target="#videoModal"><i class="material-icons">play_circle_filled</i> Watch the video</button>{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+<section class="landing-page__case-studies card text-center">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2>Made with Flutter</h2>
+                <p>
+                Flutter is used by Google and developers and organizations around the world to deliver beautiful native apps on
+                iOS and Android. Here's a small selection of apps made with Flutter. Also see the
+                <a href="#" data-video="REJDzio_h7o"
+                    data-toggle="modal" data-target="#videoModal">Flutter App Highlight Reel</a>.
+                </p>
+            </div>
+        </div>
+
+        {% for case in site.data.showcases %}
+            {% capture modulo3 %}{{ forloop.index0 | modulo:3 }}{% endcapture %}
+            {% if modulo3 == '0' %}
+                <div class="text-left card-deck flex-column flex-lg-row">
+            {% endif %}
+                    <div class="card card--case-study">
+                        <div class="card-header">
+                            {% if case.logo_src %}
+                                {% asset '{{ case.logo_src }}' class='landing-page__case-studies__logo' %}
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <h3>{{ case.name }}</h3>
+                            <p>{{ case.description }}</p>
+                        </div>
+                        <div class="card-footer card-footer--transparent card-footer--links">
+                            {% if case.learn_more_link %}<a href="{{ case.learn_more_link }}">{{ case.learn_more_cta }}</a>{% endif %}
+                            {% if case.play_store_link or case.app_store_link %}
+                                <span class="dropdown">
+                                    <a href="#" class="dropdown-toggle" id="dropdownMenuButton{{ forloop.index }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Download
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ forloop.index }}">
+                                        {% if case.play_store_link %}<a class="dropdown-item" href="{{ case.play_store_link }}" target="_blank" rel="noopener">Android</a>{% endif %}
+                                        {% if case.app_store_link %}<a class="dropdown-item" href="{{ case.app_store_link }}" target="_blank" rel="noopener">iOS</a>{% endif %}
+                                    </div>
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+            {% if modulo3 == '2' or forloop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <a class="landing-page__cta__button btn btn-primary" href="https://itsallwidgets.com/" target="_blank" rel="noopener">Explore more apps built with Flutter</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="landing-page__cta card text-center">
+    <div class="card-body">
+        <h2 class="landing-page__cta__headline">Try Flutter today.</h2>
+        <p class="landing-page__cta__body">It’s free and open source.</p>
+        <a class="landing-page__cta__button btn btn-primary btn-cta" href="/docs/get-started/install">Get started</a>
+    </div>
+</section>
+
+<div class="modal fade" data-video-modal id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="embedded-video-wrapper">
+            <iframe id="video-player-iframe" class="embedded-video-wrapper__frame" width="auto" height="auto" src="https://www.youtube.com/embed/jtYk3gWRSw0?cc_lang_pref=en&cc_load_policy=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
